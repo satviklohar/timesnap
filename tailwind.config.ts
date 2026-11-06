@@ -5,7 +5,7 @@ export default {
   theme: {
     extend: {
       colors: { paper: "#F7F6F2", ink: "#171717", orange: "#FF5A1F", lime: "#C8F169" },
-      fontFamily: { sans: ["var(--font-sans)"], mono: ["var(--font-mono)"] },
+      fontFamily: { sans: ["var(--font-sans)", "ui-sans-serif", "system-ui", "sans-serif"], mono: ["var(--font-mono)", "ui-monospace", "Menlo", "monospace"] },
       keyframes: {
         rise: { "0%": { transform: "translateY(12px)", opacity: "0" }, "100%": { transform: "translateY(0)", opacity: "1" } },
         pop: { "0%": { transform: "scale(.85)", opacity: "0" }, "60%": { transform: "scale(1.05)" }, "100%": { transform: "scale(1)", opacity: "1" } },

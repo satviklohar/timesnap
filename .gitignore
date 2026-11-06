@@ -1,5 +1,21 @@
 node_modules
 .next
-.env.local
-next-env.d.ts
+out
+build
 *.tsbuildinfo
+next-env.d.ts
+
+# secrets / local config
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# OS / editor / tool noise
+.DS_Store
+.vscode/
+.idea/
+.claude/
+*.log
+*.piskel

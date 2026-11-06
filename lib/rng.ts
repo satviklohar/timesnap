@@ -22,13 +22,3 @@ export function seededRng(seed: string): () => number {
     return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
   };
 }
-
-const ALPHABET = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
-export function randomCode(len = 5): string {
-  const bytes = crypto.getRandomValues(new Uint8Array(len));
-  return Array.from(bytes, (b) => ALPHABET[b % ALPHABET.length]).join("");
-}
-
-export function randomId(): string {
-  return crypto.getRandomValues(new Uint32Array(3)).reduce((s, n) => s + n.toString(36), "");
-}

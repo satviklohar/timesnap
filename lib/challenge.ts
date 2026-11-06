@@ -24,3 +24,14 @@ export function challengeTolerance(level: number): number {
 export function newSeed(): string {
   return Math.random().toString(36).slice(2, 8).toUpperCase();
 }
+
+/** Share-link params come from the URL, so treat them as untrusted. */
+export const cleanSeed = (v: string | null): string | null => (v && /^[A-Za-z0-9]{1,12}$/.test(v) ? v.toUpperCase() : null);
+
+export const cleanInt = (v: string | null, max = 10_000_000): number => {
+  const n = Number.parseInt(v ?? "", 10);
+  return Number.isFinite(n) ? Math.min(max, Math.max(0, n)) : 0;
+};
+
+// eslint-disable-next-line no-control-regex
+export const cleanName = (v: string | null, fallback = "A friend"): string => v?.replace(/[\u0000-\u001f\u007f<>]/g, "").trim().slice(0, 16) || fallback;

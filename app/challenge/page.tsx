@@ -6,7 +6,7 @@ import { NameField, useName } from "@/components/NameField";
 import { SnapPlayer, type SnapOutcome } from "@/components/SnapPlayer";
 import { ResultCard } from "@/components/ResultCard";
 import { CharacterSwitcher } from "@/components/CharacterSwitcher";
-import { MAX_LIVES, challengeTarget, challengeTolerance, newSeed } from "@/lib/challenge";
+import { MAX_LIVES, challengeTarget, challengeTolerance, cleanInt, cleanName, cleanSeed, newSeed } from "@/lib/challenge";
 import { fmtAbs, fmtTarget } from "@/lib/format";
 import { scoreFor } from "@/lib/scoring";
 import { loadChallengeBest, saveChallengeBest } from "@/lib/storage";
@@ -15,8 +15,8 @@ type Phase = "intro" | "play" | "result" | "over";
 
 function Challenge() {
   const params = useSearchParams();
-  const urlSeed = params.get("s");
-  const beat = params.get("b") ? { score: Number(params.get("b")), levels: Number(params.get("l") ?? 0), name: params.get("n") || "A friend" } : null;
+  const urlSeed = cleanSeed(params.get("s"));
+  const beat = urlSeed && params.get("b") ? { score: cleanInt(params.get("b")), levels: cleanInt(params.get("l"), 999), name: cleanName(params.get("n")) } : null;
 
   const [seed, setSeed] = useState(urlSeed ?? "");
   useEffect(() => setSeed((s) => s || newSeed()), []);
