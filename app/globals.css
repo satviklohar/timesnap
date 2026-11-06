@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-sans: "Space Grotesk", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "Space Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+}
+
+html, body { min-height: 100%; background: #F7F6F2; color: #171717; -webkit-tap-highlight-color: transparent; }
+body { font-family: var(--font-sans); overscroll-behavior: none; }
+::selection { background: #C8F169; }
+.num { font-variant-numeric: tabular-nums; }
+button { touch-action: manipulation; user-select: none; -webkit-user-select: none; }
+
+@layer components {
+  /* Hard-edged, tactile buttons: they sit on a solid shadow and press into it. */
+  .btn { @apply inline-flex items-center justify-center gap-2 rounded-md border-2 border-ink px-5 py-3 font-bold uppercase tracking-wide shadow-[3px_3px_0_#171717] transition duration-100 hover:-translate-x-px hover:-translate-y-px hover:shadow-[4px_4px_0_#171717] active:translate-x-[3px] active:translate-y-[3px] active:shadow-none disabled:pointer-events-none disabled:opacity-40 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange; }
+  .btn-primary { @apply btn bg-orange text-white; }
+  .btn-lime { @apply btn bg-lime text-ink; }
+  .btn-ghost { @apply btn bg-white text-ink; }
+  .input { @apply w-full rounded-md border-2 border-ink bg-white px-3 py-2.5 text-ink placeholder:text-ink/35 outline-none focus:border-orange focus:ring-2 focus:ring-orange/25; }
+  .chip { @apply rounded-full border-2 border-ink bg-white px-4 py-1.5 text-sm font-bold transition duration-100 hover:bg-lime active:scale-95; }
+  .chip-on { @apply bg-ink text-lime hover:bg-ink; }
+  .panel { @apply rounded-lg border-2 border-ink bg-white; }
+  .eyebrow { @apply font-mono text-[11px] font-bold uppercase tracking-[.18em] text-ink/55; }
+}
+
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; } }
